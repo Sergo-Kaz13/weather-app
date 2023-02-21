@@ -1,0 +1,363 @@
+:root {
+  --bg-color: #11112e;
+  --bg-1: url("./images/bg/bg1.jpg") center/cover no-repeat;
+  --bg-2: url("./images/bg/bg2.jpg") center/cover no-repeat;
+  --bg-3: url("./images/bg/bg3.jpg") center/cover fixed no-repeat;
+  --btn-bg: rgba(76, 82, 85, 0.4);
+  --btn-bg-ac: rgba(174, 181, 185, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(
+      83deg,
+      rgba(8, 15, 26, 0.59) 0%,
+      rgba(17, 17, 46, 0.46) 100%
+    ),
+    var(--bg-3);
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #fff;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #fff;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+._container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.interaction {
+  display: flex;
+  justify-content: space-between;
+  min-height: 124px;
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  gap: 10px;
+}
+
+.refresh__bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: url(./images/refresh.png) center/cover no-repeat;
+  border: none;
+  border-radius: 5px;
+  font-size: 30px;
+}
+
+.refresh__bg:hover {
+  cursor: pointer;
+}
+
+.refresh__bg-rotate {
+  transition: all 0.28s ease-out;
+}
+
+.refresh__bg:hover .refresh__bg-rotate {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.land {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 71px;
+  height: 44px;
+  text-align: center;
+  background: rgba(174, 181, 185, 0.5);
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+.land:hover {
+  cursor: pointer;
+}
+
+.land img {
+  transition: all 0.28s ease-in;
+}
+
+.land:hover img {
+  transform: translateY(4px);
+}
+
+.switch {
+  display: flex;
+}
+
+.switch__f,
+.switch__c {
+  width: 44px;
+  height: 44px;
+  border: none;
+  font-size: 18px;
+}
+
+.switch__f {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: var(--btn-bg);
+  transition: all 0.28s ease-in;
+}
+
+.switch__c {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: var(--btn-bg-ac);
+  transition: all 0.28s ease-in;
+}
+
+.switch__f:hover,
+.switch__c:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#form {
+  display: flex;
+  align-items: center;
+}
+
+.search__field {
+  width: 274px;
+  height: 44px;
+  background: rgba(76, 82, 85, 0.4);
+  border: 1px solid rgba(228, 227, 227, 0.2);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 5px 0 5px 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.search__field::placeholder {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.search__field:focus {
+  outline: none !important;
+}
+
+.btn__search {
+  width: 101px;
+  height: 44px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  background: rgba(174, 181, 185, 0.5);
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 0.28s ease-in;
+}
+
+.btn__search:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.main {
+  margin-bottom: 60px;
+}
+
+.city__name {
+  font-size: 44px;
+  line-height: 54px;
+  text-transform: uppercase;
+}
+
+.data__block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.current__date {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+.current__data {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+}
+
+.current_temp {
+  position: relative;
+  z-index: 20;
+  font-size: 206px;
+  line-height: 373px;
+}
+
+.icon__weather {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 80px;
+}
+
+.detailed__information {
+  font-size: 22px;
+  line-height: 37px;
+  text-transform: uppercase;
+}
+
+.data__by-day {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  gap: 50px;
+  padding: 20px;
+  min-width: 550px;
+  min-height: 250px;
+  border: 4px solid #fff;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px 0px rgba(255, 255, 255, 0.75);
+}
+
+.day-info-tabs {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.day-info-tabs li:not(.day-info-tabs li:last-child) {
+  border-right: 4px solid #fff;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.day-info-tabs li {
+  cursor: default;
+  position: relative;
+  transition: all 0.28s ease-in;
+}
+
+.day-info-tabs li:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.graph-data__minus,
+.temp-plus {
+  display: flex;
+  gap: 15px;
+}
+
+.graph-data__minus li,
+.temp-plus li {
+  width: 50px;
+  text-align: center;
+  color: #11112e;
+  height: 25px;
+  background: #fff;
+}
+
+.water-line {
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  margin: 5px 0;
+}
+
+.block-time,
+.temp-minus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.block-time li,
+.temp-minus li {
+  align-self: self-start;
+  position: relative;
+  background: #fff;
+  height: 25px;
+  width: 50px;
+}
+
+.block-time span {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.weather-day {
+  display: flex;
+  gap: 30px;
+  font-size: 22px;
+  line-height: 27px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.weather-day__block {
+  padding: 10px;
+  border-radius: 10px;
+  min-height: 150px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  transition: all 0.28s ease-in;
+}
+
+.weather-day__block:hover {
+  cursor: pointer;
+  border: 3px solid rgba(255, 255, 255, 1);
+}
+
+.weather-day__block h4 {
+  margin-bottom: 15px;
+}
+
+.weather-day__info {
+  display: flex;
+  gap: 5px;
+}
+
+.weather-day__temp {
+  font-size: 80px;
+  line-height: 98px;
+}

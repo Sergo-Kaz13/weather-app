@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./main.js" defer></script>
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="_container interaction">
+          <div class="interaction__control control">
+            <button type="button" class="refresh__bg">
+              <span class="refresh__bg-rotate">↻</span>
+            </button>
+            <button type="button" class="land">
+              <span>EN</span>
+              <img src="./images/arow.svg" alt="arow" />
+            </button>
+            <div class="switch">
+              <button type="button" class="switch__f">℉</button>
+              <button type="button" class="switch__c">℃</button>
+            </div>
+          </div>
+          <div class="interaction__search search">
+            <form action="#" id="form">
+              <input
+                class="search__field"
+                type="search"
+                placeholder="Search city..."
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Search city...'"
+              />
+              <button type="submit" class="btn__search">search</button>
+            </form>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="_container">
+          <div class="current__weather">
+            <h1 class="city__name">poltava, ukraine</h1>
+            <div class="current__date">Mon 28 October 17:23</div>
+            <div class="data__block">
+              <div class="current__data">
+                <div class="current_temp">
+                  10º<img
+                    class="icon__weather"
+                    src="./images/Vector.png"
+                    alt="icon weather"
+                  />
+                </div>
+                <ul class="detailed__information">
+                  <li>ovarcast</li>
+                  <li>probability of precipitation: 30%</li>
+                  <li>wind: 2 m/s</li>
+                  <li>humidity: 83%</li>
+                </ul>
+              </div>
+
+              <div class="data__by-day">
+                <ul class="day-info-tabs">
+                  <li>temperature</li>
+                  <li>chance of precipitation</li>
+                  <li>wind</li>
+                </ul>
+                <div class="graph-data">
+                  <ul class="graph-data__minus">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                  </ul>
+                  <div class="water-line"></div>
+                  <ul class="block-time">
+                    <li><span>00:00</span></li>
+                    <li><span>03:00</span></li>
+                    <li><span>06:00</span></li>
+                    <li><span>09:00</span></li>
+                    <li><span>12:00</span></li>
+                    <li><span>15:00</span></li>
+                    <li><span>18:00</span></li>
+                    <li><span>21:00</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <section class="section__weather-by-day">
+        <div class="_container weather-day">
+          <div class="weather-day__block">
+            <h4>tuesday</h4>
+            <ul class="weather-day__info">
+              <li class="weather-day__temp">7º</li>
+              <li class="weather-day__icon">
+                <img src="./images/icon-small.png" alt="icon weather" />
+              </li>
+            </ul>
+          </div>
+          <div class="weather-day__block">
+            <h4>wednesday</h4>
+            <ul class="weather-day__info">
+              <li class="weather-day__temp">6º</li>
+              <li class="weather-day__icon">
+                <img src="./images/icon-small.png" alt="icon weather" />
+              </li>
+            </ul>
+          </div>
+          <div class="weather-day__block">
+            <h4>thursday</h4>
+            <ul class="weather-day__info">
+              <li class="weather-day__temp">-13º</li>
+              <li class="weather-day__icon">
+                <img src="./images/icon-small.png" alt="icon weather" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
