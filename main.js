@@ -10,7 +10,7 @@ waterLine.classList.add("water-line");
 let maxTemp = 0;
 let minTemp = 0;
 
-fetch("./forecast.json")
+fetch("./forecast-v1.json")
   .then((res) => res.json())
   .then((data) => {
     const { list } = data;
@@ -56,20 +56,24 @@ function sortDataByDays(dataWeather) {
 
 function showGraphDataTemp(weatherDay) {
   weatherDay.forEach(({ main: { temp } }) => {
-    console.log(calculateTheColumnHeight(temp));
     const h = calculateTheColumnHeight(temp);
+    temp = transformKelvinInCelsius(temp);
+    const showTempPlus = temp > 0 ? true : "";
+    const showTempMinus = temp < 0 ? true : "";
 
     const plus = h > 0 ? h : 0;
     const minus = h < 0 ? -h : 0;
 
-    console.log(["minus"], minus);
-
     tempPlusUl.innerHTML += `
-      <li style="height:${plus}px;"></li>
+      <li style="height:${plus}px;">${
+      showTempPlus && `<span class="data-temp-plus">${temp}</span>`
+    }</li>
       `;
 
     tempMinusUl.innerHTML += `
-      <li style="height:${minus}px;"></li>
+      <li style="height:${minus}px;">${
+      showTempMinus && `<span class="data-temp-minus">${temp}</span>`
+    }</li>
     `;
   });
 

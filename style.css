@@ -280,17 +280,23 @@ button {
   cursor: pointer;
 }
 
-.graph-data__minus,
+.tabs-active {
+  opacity: 0.7;
+}
+
+.day-info-tabs .tabs-active:hover {
+  cursor: default;
+}
+
 .temp-plus {
   display: flex;
   gap: 15px;
 }
 
-.graph-data__minus li,
 .temp-plus li {
   width: 50px;
+  position: relative;
   text-align: center;
-  color: #11112e;
   height: 25px;
   background: #fff;
 }
@@ -302,7 +308,6 @@ button {
   margin: 5px 0;
 }
 
-.block-time,
 .temp-minus {
   display: flex;
   justify-content: center;
@@ -310,7 +315,6 @@ button {
   gap: 15px;
 }
 
-.block-time li,
 .temp-minus li {
   align-self: self-start;
   position: relative;
@@ -319,11 +323,22 @@ button {
   width: 50px;
 }
 
-.block-time span {
+.data-temp-plus {
   position: absolute;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: -25px;
+}
+
+.data-temp-minus {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  left: 0;
   bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .weather-day {
