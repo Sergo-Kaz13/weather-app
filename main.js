@@ -1,4 +1,6 @@
 const graphData = document.querySelector(".graph-data");
+const dayInfoTabs = document.querySelector(".day-info-tabs");
+
 const tempPlusUl = document.createElement("ul");
 const tempMinusUl = document.createElement("ul");
 const waterLine = document.createElement("div");
@@ -6,6 +8,15 @@ const waterLine = document.createElement("div");
 tempPlusUl.classList.add("temp-plus");
 tempMinusUl.classList.add("temp-minus");
 waterLine.classList.add("water-line");
+
+dayInfoTabs.addEventListener("click", (e) => {
+  console.log(e.target);
+
+  if (!e.target.classList.contains("tabs-active")) {
+    swithTabsActive();
+    e.target.classList.add("tabs-active");
+  }
+});
 
 let maxTemp = 0;
 let minTemp = 0;
@@ -110,4 +121,10 @@ function transformKelvinInCelsius(k) {
 
 function calculateTheColumnHeight(temp) {
   return (transformKelvinInCelsius(temp) / 50) * 100 * 2;
+}
+
+function swithTabsActive() {
+  for (const li of dayInfoTabs.children) {
+    li.classList.remove("tabs-active");
+  }
 }

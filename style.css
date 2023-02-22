@@ -261,6 +261,7 @@ button {
   text-transform: uppercase;
   font-weight: 600;
   padding: 10px;
+  color: #fff;
 }
 
 .day-info-tabs li:not(.day-info-tabs li:last-child) {
@@ -276,12 +277,12 @@ button {
 }
 
 .day-info-tabs li:hover {
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
 
 .tabs-active {
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .day-info-tabs .tabs-active:hover {
@@ -298,7 +299,7 @@ button {
   position: relative;
   text-align: center;
   height: 25px;
-  background: #fff;
+  background: #f18f8f;
 }
 
 .water-line {
@@ -318,7 +319,7 @@ button {
 .temp-minus li {
   align-self: self-start;
   position: relative;
-  background: #fff;
+  background: #7bdcf5;
   height: 25px;
   width: 50px;
 }
