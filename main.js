@@ -10,12 +10,10 @@ tempMinusUl.classList.add("temp-minus");
 waterLine.classList.add("water-line");
 
 dayInfoTabs.addEventListener("click", (e) => {
-  console.log(e.target);
+  let target = e.target;
+  if (target.tagName === "UL") return;
 
-  if (!e.target.classList.contains("tabs-active")) {
-    swithTabsActive();
-    e.target.classList.add("tabs-active");
-  }
+  onActiveTabs(target);
 });
 
 let maxTemp = 0;
@@ -123,8 +121,29 @@ function calculateTheColumnHeight(temp) {
   return (transformKelvinInCelsius(temp) / 50) * 100 * 2;
 }
 
-function swithTabsActive() {
+function removeActiveTabs() {
   for (const li of dayInfoTabs.children) {
     li.classList.remove("tabs-active");
+  }
+}
+
+function onActiveTabs(target) {
+  if (!target.classList.contains("tabs-active")) {
+    removeActiveTabs();
+    target.classList.add("tabs-active");
+
+    let targetId = target.id;
+
+    switch (targetId) {
+      case "temp":
+        console.log(targetId);
+        break;
+      case "pop":
+        console.log(targetId);
+        break;
+      case "wind":
+        console.log(targetId);
+        break;
+    }
   }
 }
