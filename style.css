@@ -222,22 +222,23 @@ button {
 }
 
 .current_temp {
+  align-self: flex-start;
   position: relative;
   z-index: 20;
-  font-size: 206px;
-  line-height: 373px;
+  font-size: 150px;
+  line-height: 273px;
 }
 
 .icon__weather {
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 80px;
+  top: -12px;
+  right: -82px;
+  height: 100px;
 }
 
 .detailed__information {
   font-size: 22px;
-  line-height: 37px;
+  line-height: 30px;
   text-transform: uppercase;
 }
 

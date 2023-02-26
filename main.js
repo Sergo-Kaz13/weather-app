@@ -1,9 +1,26 @@
 let maxTemp = 0;
 let minTemp = 0;
 let weatherDays = null;
+const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const graphData = document.querySelector(".graph-data");
 const dayInfoTabs = document.querySelector(".day-info-tabs");
+const currentDate = document.querySelector(".current__date");
+const currentData = document.querySelector(".current__data");
 
 const tempPlusUl = document.createElement("ul");
 const tempMinusUl = document.createElement("ul");
@@ -36,7 +53,8 @@ async function getWeatherData() {
     weatherDays = sortDataByDays(list);
     console.log(weatherDays);
     showGraphDataTemp(weatherDays[0]);
-    showCurrentDate(weatherDays[0]);
+    showCurrentDate();
+    showCurrentData(weatherDays[0]);
   } else {
     console.log("Помилка HTTP: " + response.status);
   }
@@ -220,6 +238,76 @@ function returnHour(time) {
   return time.slice(10, 16);
 }
 
-function showCurrentDate(currentDate) {
-  console.log(currentDate);
+function showCurrentDate() {
+  currentDate.innerHTML = `
+    ${formatTheDate()}
+  `;
+}
+
+function formatTheDate() {
+  let day,
+    date,
+    month,
+    hour,
+    minutes = "";
+
+  const currentDate = new Date();
+
+  day = days[currentDate.getDay()];
+  date = currentDate.getDate();
+  month = months[currentDate.getMonth()];
+  hour = currentDate.getHours();
+  minutes = currentDate.getMinutes();
+
+  const formatCurrentDate =
+    day + " " + date + " " + month + " " + hour + ":" + minutes;
+
+  return formatCurrentDate;
+}
+
+function showCurrentData(weatherDay) {
+  console.log(weatherDay[0]);
+
+  // {
+  //   "main": {
+  //     "temp": 296.76,
+  //     "humidity": 69,
+  //   },
+  //   "weather": [
+  //     {
+  //       "description": "light rain",
+  //       "icon": "10d"
+  //     }
+  //   ],
+  //   "wind": {
+  //     "speed": 0.62,
+  //   },
+  //   "pop": 0.32,
+  // }
+
+  const {
+    main: { temp, humidity },
+    weather: [{ description, icon }],
+    wind: { speed },
+    pop,
+  } = weatherDay[0];
+
+  const popData = pop ? pop * 100 : 0;
+
+  currentData.innerHTML = `
+    <div class="current_temp">
+      ${transformKelvinInCelsius(temp)}º
+      <img
+        class="icon__weather"
+        src="http://openweathermap.org/img/wn/${icon}@2x.png"
+        alt="icon weather"
+      />
+    </div>
+    <ul class="detailed__information">
+      <li>${description}</li>
+      <li>pop: ${popData}%</li>
+      <li>wind: ${speed} m/s</li>
+      <li>humidity: ${humidity}%</li>
+    </ul>
+  `;
 }
