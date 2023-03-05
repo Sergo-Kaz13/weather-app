@@ -227,12 +227,13 @@ button {
   z-index: 20;
   font-size: 150px;
   line-height: 273px;
+  padding-right: 82px;
 }
 
 .icon__weather {
   position: absolute;
-  top: -12px;
-  right: -82px;
+  top: 0;
+  right: 0;
   height: 100px;
 }
 
@@ -356,6 +357,7 @@ button {
 
 .weather-day {
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   font-size: 22px;
   line-height: 27px;

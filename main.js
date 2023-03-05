@@ -1,7 +1,13 @@
-let maxTemp = 0;
-let minTemp = 0;
 let weatherDays = null;
-const days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 const months = [
   "January",
   "February",
@@ -21,6 +27,7 @@ const graphData = document.querySelector(".graph-data");
 const dayInfoTabs = document.querySelector(".day-info-tabs");
 const currentDate = document.querySelector(".current__date");
 const currentData = document.querySelector(".current__data");
+const weatherDay = document.querySelector(".weather-day");
 
 const tempPlusUl = document.createElement("ul");
 const tempMinusUl = document.createElement("ul");
@@ -55,6 +62,7 @@ async function getWeatherData() {
     showGraphDataTemp(weatherDays[0]);
     showCurrentDate();
     showCurrentData(weatherDays[0]);
+    addItemsInfoWeather(weatherDays);
   } else {
     console.log("Помилка HTTP: " + response.status);
   }
@@ -184,8 +192,8 @@ function maxMinTempPerDay(weatherDay) {
     main: { temp },
   } = weatherDay[0];
 
-  maxTemp = temp;
-  minTemp = temp;
+  let maxTemp = temp;
+  let minTemp = temp;
 
   weatherDay.forEach(({ main: { temp } }) => {
     maxTemp = temp > maxTemp ? temp : maxTemp;
@@ -195,8 +203,7 @@ function maxMinTempPerDay(weatherDay) {
   maxTemp = transformKelvinInCelsius(maxTemp);
   minTemp = transformKelvinInCelsius(minTemp);
 
-  console.log(["maxTemp"], maxTemp);
-  console.log(["minTemp"], minTemp);
+  return Math.floor((maxTemp + minTemp) / 2);
 }
 
 function transformKelvinInCelsius(k) {
@@ -266,25 +273,6 @@ function formatTheDate() {
 }
 
 function showCurrentData(weatherDay) {
-  console.log(weatherDay[0]);
-
-  // {
-  //   "main": {
-  //     "temp": 296.76,
-  //     "humidity": 69,
-  //   },
-  //   "weather": [
-  //     {
-  //       "description": "light rain",
-  //       "icon": "10d"
-  //     }
-  //   ],
-  //   "wind": {
-  //     "speed": 0.62,
-  //   },
-  //   "pop": 0.32,
-  // }
-
   const {
     main: { temp, humidity },
     weather: [{ description, icon }],
@@ -292,7 +280,8 @@ function showCurrentData(weatherDay) {
     pop,
   } = weatherDay[0];
 
-  const popData = pop ? pop * 100 : 0;
+  let popData = pop ? pop * 100 : 0;
+  popData = !popData ? "no precipitation" : "pop: " + popData + "%";
 
   currentData.innerHTML = `
     <div class="current_temp">
@@ -305,9 +294,65 @@ function showCurrentData(weatherDay) {
     </div>
     <ul class="detailed__information">
       <li>${description}</li>
-      <li>pop: ${popData}%</li>
+      <li>${popData}</li>
       <li>wind: ${speed} m/s</li>
       <li>humidity: ${humidity}%</li>
     </ul>
   `;
+}
+
+function averageDataForTheDayPicture(dayData) {
+  console.log(["dayData"], dayData);
+
+  let images = [];
+  dayData.forEach((hours) => {
+    const {
+      weather: [{ icon }],
+    } = hours;
+
+    if (images.length === 0) {
+      images.push({
+        name: icon,
+        count: 1,
+      });
+    } else {
+      const imagesName = images.flatMap((el) => el.name);
+
+      if (!imagesName.includes(icon)) {
+        images.push({
+          name: icon,
+          count: 1,
+        });
+      } else {
+        images[imagesName.indexOf(icon)].count += 1;
+      }
+    }
+  });
+
+  images.sort((a, b) => b.count - a.count);
+
+  return images[0].name;
+}
+
+function addItemsInfoWeather(weatherDays) {
+  weatherDay.innerHTML = "";
+
+  weatherDays.forEach((elem) => {
+    const { dt_txt } = elem[0];
+    const day = days[new Date(dt_txt).getDay()];
+    const averageTemp = maxMinTempPerDay(elem);
+    const imageWeather = averageDataForTheDayPicture(elem);
+
+    weatherDay.innerHTML += `
+      <div class="weather-day__block">
+        <h4>${day}</h4>
+        <ul class="weather-day__info">
+          <li class="weather-day__temp">${averageTemp}º</li>
+          <li class="weather-day__icon">
+            <img src="http://openweathermap.org/img/wn/${imageWeather}@2x.png" />
+          </li>
+        </ul>
+      </div>
+    `;
+  });
 }
